@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Form } from 'react-bootstrap'
 import { useForm } from '../hooks/useForm'
 import { registroPersona } from '../actions/action'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Register = () => {
@@ -15,6 +15,9 @@ const Register = () => {
     })
 
     const { nombre, apellido, email, telefono } = formValues
+
+    const msjError = useSelector(state => state.msjError)
+    console.log(msjError);
 
     const handleRegistro = (e) => {
         e.preventDefault();
@@ -79,6 +82,14 @@ const Register = () => {
                         Inicia Sesión
                     </Link>
                 </Form>
+                {
+                    msjError &&
+                    (
+                        <div className="auth_alert-error">
+                            {msjError}
+                        </div>
+                    )
+                }
             </Container>
         </Container>
     )

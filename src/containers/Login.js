@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Form } from 'react-bootstrap'
 import { useForm } from '../hooks/useForm'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../actions/action'
 import { loginGoogle } from '../actions/action'
 import { Link } from 'react-router-dom'
@@ -12,6 +12,8 @@ const Login = () => {
         email: '',
         password: ''
     })
+
+    const loanding = useSelector(state => state.loanding)
 
     const { email, password } = formValues;
 
@@ -52,7 +54,7 @@ const Login = () => {
                                 onChange={handleInputChange}
                                 required />
                             <br />
-                            <button className="btn btn-primary mx-2">Inicie Sesión</button>
+                            <button className="btn btn-primary mx-2" disabled={loanding}>Inicie Sesión</button>
                             <button className="btn btn-white mx-2 my-2"
                                 onClick={handleLoginGoogle}
                             ><img className="google-icon btn-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="googlebutton" /></button>

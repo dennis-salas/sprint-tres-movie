@@ -12,6 +12,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { AuthRoute } from './AuthRoute';
 import { Spinner } from 'react-bootstrap'
 import { AuthPrivateRouter } from './AuthPrivateRouter';
+import { startLoadingMovie } from '../actions/actionMovie';
 
 const AppRouter = () => {
 
@@ -24,6 +25,7 @@ const AppRouter = () => {
             if (user?.uid) {
                 dispatch(login(user.uid, user.displayName))
                 setsIsLoogedIn(true)
+                dispatch(startLoadingMovie(user.uid))
             } else {
                 setsIsLoogedIn(false)
             }

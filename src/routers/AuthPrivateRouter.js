@@ -5,7 +5,7 @@ import { App } from '../containers/App';
 import { Movies } from '../containers/Movies';
 import LessRatedMovies from '../containers/LessRatedMovies'
 import TopRatedMovies from '../containers/TopRatedMovies'
-import AddMovie from '../containers/AddMovie'
+import AddNewMovie from '../containers/AddNewMovie'
 
 export const AuthPrivateRouter = () => {
     return (
@@ -38,8 +38,8 @@ export const AuthPrivateRouter = () => {
                         />
                         <Route
                             exact
-                            path="/AddMovie"
-                            component={AddMovie}
+                            path="/AddNewMovie"
+                            component={AddNewMovie}
                         />
 
                         <Redirect to="/" />

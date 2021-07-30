@@ -7,6 +7,7 @@ export const types = {
     LoadMovie: 'LoadMovie',
     UpdateMovie: 'UpdateMovie',
     DeleteMovie: 'DeleteMovie',
+    FileUrlMovie: 'FileUrlMovie',
     CleanMovie: 'CleanMovie',
 
     uiSetError: '[UI] set Error',

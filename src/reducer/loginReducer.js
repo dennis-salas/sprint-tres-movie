@@ -5,7 +5,7 @@ export const loginRducer = (state = {}, action) => {
         case types.login:
             return {
                 id: action.payload.id,
-                name: action.payload.displaynName
+                name: action.payload.displayName
             }
         case types.logout:
             return {}

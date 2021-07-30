@@ -1,9 +1,15 @@
 import React from 'react'
 import { Navbar, Container, Button, Image, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { startLogout } from '../actions/action'
 
 const NavbarMovie = () => {
+    const dispatch = useDispatch()
 
+    const handleLogout = () => {
+        dispatch(startLogout());
+    }
 
     return (
         <div>
@@ -17,9 +23,10 @@ const NavbarMovie = () => {
                         <Link className="nav-link" to="/Movies">Todas </Link>
                         <Link className="nav-link" to="/TopRatedMovies" >Mas valoradas</Link>
                         <Link className="nav-link" to="/LessRatedMovies">Menos valoradas</Link>
-                        <Link className="nav-link" to="/AddMovie">Agregar pelicula </Link>
-                        <Link className="nav-link" to="/auth/login"
-                        >Cerrar Sesión</Link>
+                        <Link className="nav-link" to="/AddNewMovie">Agregar pelicula</Link>
+                        <Button
+                            onClick={handleLogout}
+                        >Cerrar Sesión</Button>
                     </Nav>
                 </Container>
             </Navbar>
