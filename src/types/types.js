@@ -9,7 +9,7 @@ export const types = {
     DeleteMovie: 'DeleteMovie',
     FileUrlMovie: 'FileUrlMovie',
     CleanMovie: 'CleanMovie',
-
+    SaveMovies: ' SaveMovies',
     uiSetError: '[UI] set Error',
     uiRemoveError: '[UI] Remove Error',
 

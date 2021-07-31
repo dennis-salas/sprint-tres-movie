@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Container, Form, Button } from 'react-bootstrap'
-import { useForm } from '../hooks/useForm'
-import { startSaveMovie, clearMovie } from '../actions/action'
+import { useForm } from '../../hooks/useForm'
+import { startSaveMovie, clearMovie } from '../../actions/actionMovie'
 
 export const MovieEdit = () => {
 
@@ -36,16 +36,16 @@ export const MovieEdit = () => {
         document.querySelector('#fileSelector').click();
     }
 
-    const handleNewMovie = (e) => {
+    const handleEditMovie = (e) => {
         e.preventDefault();
         console.log(formValues)
         dispatch(startSaveMovie(formValues, file))
     }
     return (
         <Container className="text-center">
-            <h2>Adicionar Pelicula</h2>
+            <h2>Editar Pelicula</h2>
             <p className="text-center">Agrega una Pelicula a tu colección</p>
-            <Form onSubmit={handleNewMovie}>
+            <Form onSubmit={handleEditMovie}>
                 <Form.Control
                     type="text"
                     name="title"
@@ -92,17 +92,17 @@ export const MovieEdit = () => {
                         type="button"
                         className="btn border-bottom shadow-sm"
                         onClick={handlePictureClick}
-                        value="Carga una imagen"
+                        value="Cargar imagen"
                     />
                     <button type="submit" className="btn btn-primary mt-2 mx-2">
                         Enviar
                     </button>
                 </div>
             </Form>
-            <button type="submit" className="btn btn-info mt-2"
+            <Button type="submit" className="btn btn-info mt-2"
                 onClick={handleClear}>
                 Clear
-            </button>
+            </Button>
         </Container>
     )
 }

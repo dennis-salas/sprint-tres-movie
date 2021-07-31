@@ -24,6 +24,8 @@ const NavbarMovie = () => {
                         <Link className="nav-link" to="/TopRatedMovies" >Mas valoradas</Link>
                         <Link className="nav-link" to="/LessRatedMovies">Menos valoradas</Link>
                         <Link className="nav-link" to="/AddNewMovie">Agregar pelicula</Link>
+                    </Nav>
+                    <Nav>
                         <Button
                             onClick={handleLogout}
                         >Cerrar Sesión</Button>

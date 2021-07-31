@@ -11,11 +11,11 @@ export const MovieCard = () => {
         dispatch(activeMovie(data.id, data))
     }
 
-    const handleDelete = (id) => {
-        dispatch(Delete(id))
+    const handleDelete = (data) => {
+        dispatch(Delete(data.id, data))
     }
     const { movie } = useSelector(state => state.movie)
-    console.log(movie);
+
     return (
         <Container>
             <h2>Peliculas añadidas</h2>
@@ -41,7 +41,7 @@ export const MovieCard = () => {
                                         Editar
                                     </Button>
                                     <Button
-                                        onClick={() => handleDelete(ele.id)}
+                                        onClick={() => handleDelete(ele)}
                                     >
                                         Eliminar
                                     </Button>

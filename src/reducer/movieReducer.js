@@ -12,17 +12,17 @@ export const movieReducer = (state = initialState, action) => {
                 ...state,
                 movie: [action.payload, ...state.movie]
             }
+        case types.LoadMovie:
+            return {
+                ...state,
+                movie: [...action.payload]
+            }
         case types.ActiveMovie:
             return {
                 ...state,
                 active: {
                     ...action.payload
                 }
-            }
-        case types.LoadMovie:
-            return {
-                ...state,
-                movie: [...action.payload]
             }
         case types.UpdateMovie:
             console.log(action.payload.id);

@@ -8,7 +8,7 @@ export const Slider = () => {
                 <Carousel.Item>
                     <img
                         className="rounded mx-auto d-block img-baner"
-                        src="https://i.ibb.co/HzHK0n6/covers.jpg"
+                        src="https://i.ibb.co/6D6Mzj7/mulan.png"
                         alt="First slide"
                     />
                     <Carousel.Caption>
@@ -17,7 +17,7 @@ export const Slider = () => {
                 <Carousel.Item>
                     <img
                         className="rounded mx-auto d-block img-baner"
-                        src="https://i.ibb.co/8j1Rhvr/covers-1.jpg"
+                        src="https://i.ibb.co/XSRbxB2/raya.png"
                         alt="Second slide"
                     />
 
@@ -27,8 +27,8 @@ export const Slider = () => {
                 <Carousel.Item>
                     <img
                         className="rounded mx-auto d-block img-baner"
-                        src="https://i.ibb.co/HzHK0n6/covers.jpg"
-                        alt="Third slide"
+                        src="https://i.ibb.co/Cvw7qPX/unidos.png"
+                        alt="one slide"
                     />
 
                     <Carousel.Caption>

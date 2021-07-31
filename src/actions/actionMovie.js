@@ -25,16 +25,31 @@ export const AddMovie = (movie, file) => {
         }
 
         const docRef = await db.collection(`${uid}/blockMaster/Peliculas`).add(newMovie);
-        dispatch(AddNewMovie(uid, newMovie))
+        dispatch(AddNewMovie(docRef.uid, newMovie))
     }
 
 }
+
 export const AddNewMovie = (id, movie) => ({
     type: types.AddNewMovie,
     payload: {
         id, ...movie
     }
 })
+
+export const startLoadingMovie = (uid) => {
+    return async (dispatch) => {
+        const movies = await loadMovie(uid)
+        dispatch(setMovie(movies))
+    }
+}
+
+export const setMovie = (movies) => {
+    return {
+        type: types.LoadMovie,
+        payload: movies
+    }
+}
 
 export const activeMovie = (id, movie) => {
     return {
@@ -46,25 +61,26 @@ export const activeMovie = (id, movie) => {
     }
 }
 
-export const setMovie = (movie) => {
+export const saveMovies = (movies) => {
     return {
-        type: types.LoadMovie,
-        payload: movie
+        type: types.SaveMovies,
+        payload: movies
     }
 }
 
-export const startLoadingMovie = (uid) => {
-    return async (dispatch) => {
-        const movie = await loadMovie(uid)
-        dispatch(setMovie(movie))
+export const clearMovie = () => {
+    return {
+        type: types.CleanMovie
     }
 }
+
+
 
 export const startSaveMovie = (movie, file) => {
 
     return async (dispatch, getState) => {
 
-        const { uid } = getState().auth;
+        const { uid } = getState().login.id;
         let fileUrl = []
 
         try {
@@ -90,8 +106,8 @@ export const startSaveMovie = (movie, file) => {
         delete movieToFirestone.uid
 
         Swal.fire({
-            title: 'Uploading...',
-            text: 'Please wait ...',
+            title: 'Cargando...',
+            text: 'Por favor espere ...',
             allowOutsideClick: false,
             onBeforeOpen: () => {
                 Swal.showLoading()
@@ -106,42 +122,49 @@ export const startSaveMovie = (movie, file) => {
     }
 }
 
-export const refreshMovie = (id, movie) => ({
+export const refreshMovie = (id, editmovie) => ({
     type: types.UpdateMovie,
     payload: {
         id,
-        movie: {
+        editmovie: {
             id,
-            ...movie
+            ...editmovie
         }
     }
 })
 
-export const Delete = (id) => {
+export const Delete = (id, data) => {
 
     return async (dispatch, getState) => {
-        const uid = getState().auth.uid
-        const movie = getState().auth.movie
+        const uid = getState().login.id;
+        const movie = data
 
-        await db.doc(`${uid}blockMaster/Peliculas/${id}`).delete()
+        try {
 
-        dispatch(deleteMovie(id))
-        dispatch(refreshMovie(id, movie))
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Delete',
-            showConfirmButton: false,
-            timer: 1500
-        })
-        dispatch(startLoadingMovie(uid))
+            await db.doc(`${uid}blockMaster/Peliculas/${id}`).delete()
+
+            dispatch(deleteMovie(id))
+            dispatch(refreshMovie(id, movie))
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Delete',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            dispatch(startLoadingMovie(uid))
+
+        } catch (error) {
+            Swal.fire(
+                'Error!',
+                'Hubo un problema al elminar el registro!',
+                'error'
+            )
+        }
+
     }
 }
-export const clearMovie = () => {
-    return {
-        type: types.CleanMovie
-    }
-}
+
 export const deleteMovie = (id) => ({
     type: types.deleteMovie,
     payload: id
@@ -161,7 +184,7 @@ export const startUploanding = (file) => {
         })
 
         const fileUrl = await fileUpLoad(file)
-        activeMovie.url = fileUrl
+        ActiveMovie.url = fileUrl
         dispatch(startSaveMovie(activeMovie))
 
         Swal.close()
