@@ -21,8 +21,8 @@ const NavbarMovie = () => {
                     <Navbar.Toggle />
                     <Nav className="me-auto">
                         <Link className="nav-link" to="/Movies">Todas </Link>
-                        <Link className="nav-link" to="/TopRatedMovies" >Mas valoradas</Link>
-                        <Link className="nav-link" to="/LessRatedMovies">Menos valoradas</Link>
+                        <Link className="nav-link" to="/TopRatedMovies" >Lo mas valorados</Link>
+                        <Link className="nav-link" to="/LessRatedMovies">Proximamente</Link>
                         <Link className="nav-link" to="/AddNewMovie">Agregar pelicula</Link>
                     </Nav>
                     <Nav>

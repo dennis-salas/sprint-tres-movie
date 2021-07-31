@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal, Button, Row, Col } from 'react-bootstrap'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 
@@ -27,13 +27,6 @@ export const DetailMovie = (props) => {
         setSelectedMovie(movies.find((movie) => movie.id === props.id))
     }, [movies, props.id])
 
-    useEffect(() => {
-        if (selectedMovie) {
-            setSelectedGenre(
-                genres.find((gen) => gen.id === selectedMovie.genre_ids[0])
-            );
-        }
-    }, [selectedMovie, genres]);
 
     return (
         <Modal
@@ -43,23 +36,29 @@ export const DetailMovie = (props) => {
             {
                 selectedMovie && (
                     <Modal.Body>
-                        <h4>{selectedMovie.title}</h4>
-                        <img src={urlImage + selectedMovie.poster_path} alt='' />
-                        <p>{selectedMovie.overview}</p>
-                        <div>
-                            {
-                                selectedMovie.release_date
-                                    ? selectedMovie.release_date.split('_')[0]
-                                    : ''
-                            }
-                            <span>{selectedGenre && selectedGenre.name}</span>
-                        </div>
-                    </Modal.Body>
+                        <Row className="justify-content-center align-items-center">
+                            <Col md={6} xs={12}>
+                                <img src={urlImage + selectedMovie.poster_path} alt={selectedMovie.title} className="img-fluid mx-auto d-block" />
+                            </Col>
+                            <Col md={6} xs={12} >
+                                <h4>{selectedMovie.title}</h4>
+                                <p>{selectedMovie.overview}</p>
+                                <div>
+                                    {
+                                        selectedMovie.release_date
+                                            ? selectedMovie.release_date.split('_')[0]
+                                            : ''
+                                    }
+                                    <span>{selectedGenre && selectedGenre.name}</span>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Modal.Body >
                 )
             }
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
             </Modal.Footer>
-        </Modal>
+        </Modal >
     )
 }
