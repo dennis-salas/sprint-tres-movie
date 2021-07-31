@@ -42,7 +42,7 @@ export const DetailMovie = (props) => {
                             </Col>
                             <Col md={6} xs={12} >
                                 <h4>{selectedMovie.title}</h4>
-                                <p>{selectedMovie.overview}</p>
+                                <p className="text-justify">{selectedMovie.overview}</p>
                                 <div>
                                     {
                                         selectedMovie.release_date
